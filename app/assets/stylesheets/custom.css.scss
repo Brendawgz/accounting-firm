@@ -1,0 +1,184 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.jumbotron {
+  background-image: image-url("office_space.png");
+  background-size: cover;
+  margin: 0px;
+  min-height: 100vh;
+}
+ 
+.container {
+    background: rgba(248, 248, 248, .2);
+    color: black;
+}
+
+.navbar-nav.nav-justified > li{
+    float:none;
+}
+
+.navbar {
+    margin: 0px;
+    border: none;
+    background-image: none;
+    background-repeat: no-repeat;
+}
+
+#navbar-link a {
+    color: black;
+}
+
+#navbar-link a:hover {
+    background: rgb(231, 231, 231)
+}
+
+.dropdown-toggle {
+    color: black !important;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown:hover .dropdown-toggle:hover {
+    background: rgb(231, 231, 231);
+}
+
+.dropdown-menu {
+    width: 100%;
+}
+
+.dropdown-menu>li>a {
+    text-align: center;
+ }
+ 
+.title {
+    text-align: center;
+}
+
+.title a {
+    color: black !important;
+}
+
+.image-link a {
+    color: white !important;
+}
+
+.image-div {
+    overflow:hidden;
+    margin-bottom: 0px;
+}
+
+.carousel .item {
+      height: 700px;
+}
+
+.item img {
+    min-height: 700px;
+}
+
+.carousel-caption {
+    color: white; 
+    font: bold 20px/41px Helvetica, Sans-Serif; 
+    background: rgb(0, 0, 0); /* fallback color */
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    width: 95%;
+    text-align: center;
+    margin: auto;
+}
+
+.home-content-top {
+    border-top: 5px solid black;
+}
+
+.home-content {
+    padding-top: 10px;
+    padding-bottom: 5px;
+    border-bottom: 5px solid black;
+    background: rgba(255, 255, 255, 0.8);
+    clear: both;
+    width: 100%;
+    position: relative;
+    left: 15px;
+}
+
+.home-content-div-text {
+    width: 70%;
+    float: left;
+}
+
+.home-content-div-img {
+    height: 180px;
+    width: 25%;
+    background-color: white;
+    margin-left: 15px;
+    float: left;
+}
+
+.content-div {
+    background: rgba(255, 255, 255, 0.8);
+    border-bottom: 5px solid black;
+}
+
+.content-div-text {
+    border-top: 5px solid black;
+    padding-left: 15px;
+    padding-bottom: 15px;
+    text-align: center;
+}
+
+.content-div-img {
+    height: 300px;
+    width: 100%;
+}
+
+.about {
+    background-image: asset-data-url("board_of_directors_meeting.png");
+    background-position: 50% 65%;
+}
+
+.contact {
+    background-image: asset-data-url("lintas.png");
+    background-position: 50% 65%;
+}
+
+a {
+    color: black !important;
+}
+
+.footer {
+    background: rgba(255, 255, 255, 0.8);
+}
+
+@media all and (min-width: 1024px) and (max-width: 1920px) { 
+    .carousel-caption {
+        position: absolute; 
+        bottom: 60px;
+        left: 30px;
+    }
+}
+
+@media all and (min-width: 768px) and (max-width: 1024px) { 
+    .carousel-caption {
+        position: absolute; 
+        bottom: 60px;
+        left: 15px;
+    }
+}
+
+@media all and (min-width: 480px) and (max-width: 768px) { 
+    .carousel-caption {
+        position: absolute; 
+        bottom: 60px;
+        left: 10px;
+    }
+}
+
+@media all and (max-width: 480px) { 
+    .carousel-caption {
+        position: absolute; 
+        bottom: 60px;
+        left: 10px;
+    }
+}

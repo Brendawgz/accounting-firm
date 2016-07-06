@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Yong, Tan & Co</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<div class="jumbotron">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h2 class="title"><%= link_to 'Yong, Tan & Co Chartered Accountants', root_path %></h2>
+        <%= render 'shared/nav' %> 
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <%= yield %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <%= render 'shared/footer' %>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

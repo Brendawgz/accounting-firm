@@ -1,0 +1,6 @@
+<footer class="footer">
+    <% if !current_page?(controller: 'pages', action: 'index') %>
+        <p style="float:left; padding-left: 10px;"><%= link_to 'Back to Home', root_path %></p>
+    <% end %>
+    <p style="text-align:right; padding-right: 10px;">&copy; Yong, Tan & Co Chartered Accountants</p>
+</footer>

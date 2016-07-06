@@ -1,0 +1,59 @@
+<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="3000" data-pause="false">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#myCarousel" data-slide-to="1"></li>
+    <li data-target="#myCarousel" data-slide-to="2"></li>
+    <li data-target="#myCarousel" data-slide-to="3"></li>
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" role="listbox">
+    <div class="item active">
+      <%= link_to image_tag("board_of_directors_meeting.png"), about_path %>
+      <div class="carousel-caption">
+        <div class="image-text">
+        <h2 class="image-link"><%= link_to "About Us", about_path %></h2>
+        <p>
+            Yong, Tan & Co Chartered Accountants is one of the most established accounting firms in Kota Kinabalu.
+        </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="item">
+      <%= link_to image_tag("lintas.png"), contact_path %>
+      <div class="carousel-caption">
+        <h2 class="image-link"><%= link_to "Contact Us", contact_path %></h2>
+        <p>We are located in several areas, including Lintas and Keningau.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <%= link_to image_tag("MySQL.png"), promote_path %>
+      <div class="carousel-caption">
+        <h2 class="image-link"><%= link_to "Why You Should Choose Us", promote_path %></h2>
+        <p>We offer a broad range of services including taxation, assurance and audit and bookeeping</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <%= link_to image_tag("asian_office_workers.png"), apply_path %>
+      <div class="carousel-caption">
+        <h2 class="image-link"><%= link_to "Join Us", apply_path %></h2>
+        <p>Join our team today!</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Left and right controls -->
+  <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
