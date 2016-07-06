@@ -31,11 +31,28 @@
           </ul>
         </li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Log In <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-             <li id="navbar-link"><%= link_to 'Client Login', root_path %></li>
-             <li id="navbar-link"><%= link_to 'Staff Login', root_path %></li>
-          </ul>
+          <% if !staff_signed_in? && !client_signed_in? %>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Log In <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+               <li id="navbar-link"><%= link_to 'Client Login', new_client_session_path %></li>
+               <li id="navbar-link"><%= link_to 'Staff Login', new_staff_session_path %></li>
+            </ul>
+          <% elsif staff_signed_in? %>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Staff <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+               <li id="navbar-link"><%= link_to 'Manage Staff', root_path %></li>
+               <li id="navbar-link"><%= link_to 'Manage Clients', root_path %></li>
+               <li id="navbar-link"><%= link_to 'My Clients', root_path %></li>
+               <li id="navbar-link"><%= link_to 'My Workload', root_path %></li>
+               <li id="navbar-link"><%= link_to 'Log Out', destroy_staff_session_path %></li>
+             </ul>
+          <% elsif client_signed_in? %>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Client <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+               <li id="navbar-link"><%= link_to 'Progress Report', root_path %></li>
+               <li id="navbar-link"><%= link_to 'Log Out', destroy_client_session_path %></li>
+             </ul>
+          <% end %>
         </li>
     </div>
   </div>

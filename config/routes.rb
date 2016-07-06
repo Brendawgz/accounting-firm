@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
-  devise_for :clients
-  devise_for :staffs
+  devise_for :clients, controllers: { sessions: 'clients/sessions', registrations: 'clients/registrations', passwords: 'clients/passwords', confirmations: 'clients/confirmations'}
+  devise_for :staffs, controllers: { sessions: 'staffs/sessions', registrations: 'staffs/registrations', passwords: 'staffs/passwords', confirmations: 'staffs/confirmations'}
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
