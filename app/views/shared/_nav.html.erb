@@ -40,17 +40,30 @@
           <% elsif staff_signed_in? %>
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Staff <span class="caret"></span></a>
             <ul class="dropdown-menu">
-               <li id="navbar-link"><%= link_to 'Manage Staff', root_path %></li>
-               <li id="navbar-link"><%= link_to 'Manage Clients', root_path %></li>
-               <li id="navbar-link"><%= link_to 'My Clients', root_path %></li>
-               <li id="navbar-link"><%= link_to 'My Workload', root_path %></li>
-               <li id="navbar-link"><%= link_to 'Log Out', destroy_staff_session_path %></li>
+              <% if current_staff.admin == true %>
+                 <li class="dropdown-header">Admin Actions</li>
+                 <li id="navbar-link"><%= link_to 'Manage Staff', root_path %></li>
+                 <li id="navbar-link"><%= link_to 'Manage Teams', root_path %></li>
+                 <li id="navbar-link"><%= link_to 'Manage Clients', root_path %></li>
+                 <li id="navbar-link"><%= link_to 'Create Task', root_path %></li>
+                 <li id="navbar-link"><%= link_to 'Manage Tasks', root_path %></li>
+                 <li role="separator" class="divider"></li>
+              <% end %>
+              <% if current_staff.team_leader == true %>
+                 <li class="dropdown-header">Team Leader Actions</li>
+                 <li id="navbar-link"><%= link_to 'Manage My Team', root_path %></li>
+                 <li id="navbar-link"><%= link_to 'Create Subtask', root_path %></li>
+                 <li role="separator" class="divider"></li>
+              <% end %> 
+              <li id="navbar-link"><%= link_to 'My Team', root_path %></li>
+              <li id="navbar-link"><%= link_to 'My Tasks', root_path %></li>
+              <li id="navbar-link"><%= link_to 'Log Out', destroy_staff_session_path, method: :delete %></li>
              </ul>
           <% elsif client_signed_in? %>
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Client <span class="caret"></span></a>
             <ul class="dropdown-menu">
                <li id="navbar-link"><%= link_to 'Progress Report', root_path %></li>
-               <li id="navbar-link"><%= link_to 'Log Out', destroy_client_session_path %></li>
+               <li id="navbar-link"><%= link_to 'Log Out', destroy_client_session_path, method: :delete %></li>
              </ul>
           <% end %>
         </li>

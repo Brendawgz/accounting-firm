@@ -1,6 +1,8 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+// Shared CSS
+
 .jumbotron {
   background-image: image-url("office_space.png");
   background-size: cover;
@@ -48,6 +50,13 @@
     width: 100%;
 }
 
+.dropdown-header {
+    color: black !important;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+}
+
 .dropdown-menu>li>a {
     text-align: center;
  }
@@ -60,6 +69,16 @@
     color: black !important;
 }
 
+a {
+    color: black !important;
+}
+
+.footer {
+    background: rgba(255, 255, 255, 0.8);
+}
+
+// Homepage CSS
+
 .image-link a {
     color: white !important;
 }
@@ -70,7 +89,7 @@
 }
 
 .carousel .item {
-      height: 700px;
+    height: 700px;
 }
 
 .item img {
@@ -86,69 +105,6 @@
     width: 95%;
     text-align: center;
     margin: auto;
-}
-
-.home-content-top {
-    border-top: 5px solid black;
-}
-
-.home-content {
-    padding-top: 10px;
-    padding-bottom: 5px;
-    border-bottom: 5px solid black;
-    background: rgba(255, 255, 255, 0.8);
-    clear: both;
-    width: 100%;
-    position: relative;
-    left: 15px;
-}
-
-.home-content-div-text {
-    width: 70%;
-    float: left;
-}
-
-.home-content-div-img {
-    height: 180px;
-    width: 25%;
-    background-color: white;
-    margin-left: 15px;
-    float: left;
-}
-
-.content-div {
-    background: rgba(255, 255, 255, 0.8);
-    border-bottom: 5px solid black;
-}
-
-.content-div-text {
-    border-top: 5px solid black;
-    padding-left: 15px;
-    padding-bottom: 15px;
-    text-align: center;
-}
-
-.content-div-img {
-    height: 300px;
-    width: 100%;
-}
-
-.about {
-    background-image: asset-data-url("board_of_directors_meeting.png");
-    background-position: 50% 65%;
-}
-
-.contact {
-    background-image: asset-data-url("lintas.png");
-    background-position: 50% 65%;
-}
-
-a {
-    color: black !important;
-}
-
-.footer {
-    background: rgba(255, 255, 255, 0.8);
 }
 
 @media all and (min-width: 1024px) and (max-width: 1920px) { 
@@ -182,3 +138,71 @@ a {
         left: 10px;
     }
 }
+
+.home-content-top {
+    border-top: 5px solid black;
+}
+
+.home-content {
+    padding-top: 10px;
+    padding-bottom: 5px;
+    border-bottom: 5px solid black;
+    background: rgba(255, 255, 255, 0.8);
+    clear: both;
+    width: 100%;
+    position: relative;
+    left: 15px;
+}
+
+.home-content-div-text {
+    width: 70%;
+    float: left;
+}
+
+.home-content-div-img {
+    height: 180px;
+    width: 25%;
+    background-color: white;
+    margin-left: 15px;
+    float: left;
+}
+
+// Pages CSS
+
+.content-div {
+    background: rgba(255, 255, 255, 0.8);
+    border-bottom: 5px solid black;
+}
+
+.content-div-text {
+    border-top: 5px solid black;
+    padding-left: 15px;
+    padding-bottom: 15px;
+    text-align: center;
+}
+
+.content-div-img {
+    height: 300px;
+    width: 100%;
+}
+
+.about {
+    background-image: asset-data-url("board_of_directors_meeting.png");
+    background-position: 50% 65%;
+}
+
+.contact {
+    background-image: asset-data-url("lintas.png");
+    background-position: 50% 65%;
+}
+
+// Forms (Log In, Sign In, Sign Out, Confirmation, Password Reset) CSS
+
+.form {
+    background: rgba(255, 255, 255, 0.8);
+    margin-top: 0px;
+    border-top: 5px solid black;
+    border-bottom: 5px solid black;
+    text-align: center;
+}
+
