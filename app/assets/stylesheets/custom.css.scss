@@ -4,7 +4,7 @@
 // Shared CSS
 
 .jumbotron {
-  background-image: image-url("office_space.png");
+  background-image: asset-data-url("office_space.png");
   background-size: cover;
   margin: 0px;
   min-height: 100vh;
