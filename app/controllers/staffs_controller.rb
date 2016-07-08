@@ -4,6 +4,7 @@ class StaffsController < ApplicationController
     
     def index
         @staffs = Staff.all
+        @images = Image.all
     end
     
     def show

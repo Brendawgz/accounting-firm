@@ -5,10 +5,10 @@
     <% @staffs.each do |staff| %>
         <div class="row model-content">
             <div class="col-md-4 model-img-div">
-              <% if staff.image == nil %>
-                <p><%= link_to 'Add staff image', new_image_path %></p>
+              <% if staff.image %>
+                <%= image_tag(staff.image.picture.url, size: "300x300") %>
               <% else %>
-                <%= image_tag(staff.picture.url, size: "300x300") %>
+                <p><%= link_to 'Add staff image', new_image_path(:staff_id => staff.id) %></p>
               <% end %>
             </div>
             <div class="col-md-8 model-text">

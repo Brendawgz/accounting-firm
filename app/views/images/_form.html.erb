@@ -30,6 +30,8 @@
     <%=f.error_span(:picture) %>
   </div>
 
+  <%= hidden_field_tag 'staff_id', params[:staff_id] %>
+
   <div class="form-group">
     <div class="col-lg-offset-2 col-lg-10">
       <%= f.submit nil, :class => 'btn btn-primary' %>
