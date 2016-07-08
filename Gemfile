@@ -20,6 +20,11 @@ gem 'devise'
 # Add Devise Bootstrap views
 gem 'devise-bootstrap-views'
 
+# Add gems for image upload
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'fog'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder

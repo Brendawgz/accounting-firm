@@ -1,18 +1,17 @@
 class SubtasksController < ApplicationController
     before_action :set_subtask, only: [:edit, :update, :show, :destroy]
     before_action :require_staff
-    before_action :require_same_staff, only: [:edit, :update, :show, :destroy]
     
     def index
-        @subtasks = subtask.all
+        @subtasks = Subtask.all
     end
         
     def new
-        @subtask = subtask.new
+        @subtask = Subtask.new
     end
     
     def create
-        @subtask = subtask.new(subtask_params)
+        @subtask = Subtask.new(subtask_params)
         if @subtask.save
             redirect_to subtasks_path
         else
@@ -51,8 +50,8 @@ class SubtasksController < ApplicationController
         @subtask = subtask.find(params[:id])
     end
     
-    def require_same_staff
-      if current_staff != @subtask.staff and !current_staff.admin?
+    def require_staff
+      if !staff_signed_in?
         redirect_to root_path
       end
     end

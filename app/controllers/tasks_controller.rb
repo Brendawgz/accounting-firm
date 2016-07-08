@@ -1,18 +1,17 @@
 class TasksController < ApplicationController
     before_action :set_task, only: [:edit, :update, :show, :destroy]
-    before_action :require_staff
-    before_action :require_same_staff, only: [:edit, :update, :show, :destroy]
+    before_action :require_admin
     
     def index
-        @tasks = task.all
+        @tasks = Task.all
     end
         
     def new
-        @task = task.new
+        @task = Task.new
     end
     
     def create
-        @task = task.new(task_params)
+        @task = Task.new(task_params)
         if @task.save
             redirect_to tasks_path
         else
@@ -51,8 +50,8 @@ class TasksController < ApplicationController
         @task = task.find(params[:id])
     end
     
-    def require_same_staff
-      if current_staff != @task.team.staffs and !current_staff.admin?
+    def require_admin
+      unless staff_signed_in? and current_staff.admin?
         redirect_to root_path
       end
     end

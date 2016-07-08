@@ -1,18 +1,17 @@
 class TeamsController < ApplicationController
     before_action :set_team, only: [:edit, :update, :show, :destroy]
-    before_action :require_staff
-    before_action :require_same_staff, only: [:edit, :update, :show, :destroy]
+    before_action :require_admin, only: [:index, :new, :create, :destroy]
     
     def index
-        @teams = team.all
+        @teams = Team.all
     end
         
     def new
-        @team = team.new
+        @team = Team.new
     end
     
     def create
-        @team = team.new(team_params)
+        @team = Team.new(team_params)
         if @team.save
             redirect_to teams_path
         else
@@ -51,8 +50,8 @@ class TeamsController < ApplicationController
         @team = team.find(params[:id])
     end
     
-    def require_same_staff
-      if current_staff != @team.staffs and !current_staff.admin?
+    def require_admin
+      unless staff_signed_in? and current_staff.admin?
         redirect_to root_path
       end
     end

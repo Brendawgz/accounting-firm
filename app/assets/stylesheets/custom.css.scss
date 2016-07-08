@@ -206,3 +206,24 @@ a {
     text-align: center;
 }
 
+// Staff, Team, Task, Subtask, Client CSS
+
+.model-div {
+    background: rgba(255, 255, 255, 0.8);
+    margin-top: 0px;
+    border-top: 5px solid black;
+    border-bottom: 5px solid black;
+}
+
+.model-div-text {
+    width: 70%;
+    float: left;
+}
+
+.model-div-img {
+    height: 180px;
+    width: 25%;
+    background-color: white;
+    margin-left: 15px;
+    float: left;
+}

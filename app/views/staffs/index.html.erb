@@ -1,0 +1,33 @@
+<div class="model-div">
+
+  <h1>Staff Listing</h1>
+  
+    <% @staffs.each do |staff| %>
+        <div class="row model-content">
+            <div class="col-md-4 model-img-div">
+              <% if staff.image == nil %>
+                <p><%= link_to 'Add staff image', new_image_path %></p>
+              <% else %>
+                <%= image_tag(staff.picture.url, size: "300x300") %>
+              <% end %>
+            </div>
+            <div class="col-md-8 model-text">
+                <h3><%= staff.name %></h3>
+                <ul>
+                  <li>
+                    <%= staff.email %>
+                  </li>
+                  <li>
+                    <%= staff.subtasks %>
+                  </li>
+                  <li>
+                    <%= staff.team %>
+                  </li>
+                </ul>
+            </div>
+        </div>
+    <% end %>
+
+</div>
+
+

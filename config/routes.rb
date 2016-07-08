@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :images
   devise_for :clients, controllers: { sessions: 'clients/sessions', registrations: 'clients/registrations', passwords: 'clients/passwords', confirmations: 'clients/confirmations'}
   devise_for :staffs, controllers: { sessions: 'staffs/sessions', registrations: 'staffs/registrations', passwords: 'staffs/passwords', confirmations: 'staffs/confirmations'}
   # The priority is based upon order of creation: first created -> highest priority.
@@ -23,6 +24,8 @@ Rails.application.routes.draw do
   resources :teams  
   resources :tasks
   resources :subtasks
+  resources :staffs, only: [:index, :show]
+  resources :clients, only: [:index, :show]
 
   # Example resource route with options:
   #   resources :products do

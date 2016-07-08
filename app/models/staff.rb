@@ -5,4 +5,5 @@ class Staff < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   belongs_to :team
   has_many :subtasks, dependent: :destroy
+  has_one :image
 end
