@@ -1,23 +1,33 @@
-<div class="content-div">
-  <h1>Listing Clients</h1>
-
-  <table>
-    <thead>
-      <tr>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
-  
-    <tbody>
-      <% @clients.each do |client| %>
-        <tr>
-          <%= client.email %>
-          <td><%= link_to 'Show', client_path(client) %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-  
-  <br>
+<div class="model-div">
+  <div class="model-div-title">
+    <h1>Client Listing</h1>
+  </div>
+  <% @clients.each do |client| %>
+      <div class="row model-div-content">
+          <div class="col-md-4 model-div-img">
+            <% if client.image %>
+              <%= image_tag(client.image.picture.url, size: "300x300") %>
+            <% else %>
+              <p><%= link_to 'Add client image', new_image_path(:client_id => client.id) %></p>
+            <% end %>
+          </div>
+          <div class="col-md-8 model-div-text">
+              <h3><%= client.name %></h3>
+              <ul>
+                <li>
+                  <%= client.email %>
+                </li>
+              </ul>
+                <div class="model-actions-view">
+                  <%= button_to "View Client", client_path(client), method: :get, class:"btn btn-default btn-large model-btn" %>
+                </div>
+                <div class="model-actions-edit">
+                  <%= button_to "Edit Client", edit_client_path(client), method: :get, class:"btn btn-default btn-large model-btn" %>
+                </div>
+                <div class="model-actions-delete">
+                  <%= button_to "Delete Client", client_path(client), method: :delete, data: {confirm: "Are you sure?"}, class:"btn btn-default btn-large model-btn" %>
+                </div>
+          </div>
+      </div>
+  <% end %>
 </div>
-

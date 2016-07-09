@@ -1,33 +1,66 @@
 <div class="model-div">
-
-  <h1>Staff Listing</h1>
-  
-    <% @staffs.each do |staff| %>
-        <div class="row model-content">
-            <div class="col-md-4 model-img-div">
-              <% if staff.image %>
-                <%= image_tag(staff.image.picture.url, size: "300x300") %>
-              <% else %>
-                <p><%= link_to 'Add staff image', new_image_path(:staff_id => staff.id) %></p>
-              <% end %>
-            </div>
-            <div class="col-md-8 model-text">
-                <h3><%= staff.name %></h3>
-                <ul>
+  <div class="model-div-title">
+    <h1>Staff Listing</h1>
+    <%= button_to "Add Staff", new_staff_path, method: :get, class:"btn btn-default btn-large model-actions-add" %>
+  </div>
+  <% @staffs.each do |staff| %>
+      <div class="row model-div-content">
+          <div class="col-md-4 model-div-img">
+            <% if staff.picture %>
+              <%= image_tag(staff.picture.url, size: "300x300") %>
+            <% else %>
+              <p><%= link_to 'Add staff image', edit_staff_path(staff) %></p>
+            <% end %>
+          </div>
+          <div class="col-md-8 model-div-text">
+              <h3><%= staff.name %></h3>
+              <ul>
+                <li>
+                  <%= staff.email %>
+                </li>
+                <% if staff.subtasks.empty? %>
                   <li>
-                    <%= staff.email %>
+                    This staff does not currently have a task
                   </li>
+                <% else %>
+                  <%= staff.subtasks.each do |subtask| %>
+                    <li>
+                      <%= subtask %>
+                    </li>
+                  <% end %>
+                <% end %>
+                <% if staff.team %>
                   <li>
-                    <%= staff.subtasks %>
+                    <%= staff.team.name %>
                   </li>
+                <% else %>
                   <li>
-                    <%= staff.team %>
+                    This staff does not currently belong to a team
                   </li>
-                </ul>
-            </div>
-        </div>
-    <% end %>
-
+                <% end %>
+                <% if staff.admin? %>
+                  <li>
+                    Admin
+                  </li>
+                <% end %>
+                <% if staff.team_leader? %>
+                  <li>
+                    Team Leader
+                  </li>
+                <% end %>
+              </ul>
+                <div class="model-actions-view">
+                  <%= button_to "View Staff", staff_path(staff), method: :get, class:"btn btn-default btn-large model-btn" %>
+                </div>
+                <div class="model-actions-edit">
+                  <%= button_to "Edit Staff", edit_staff_path(staff), method: :get, class:"btn btn-default btn-large model-btn" %>
+                </div>
+                <div class="model-actions-delete">
+                  <%= button_to "Delete Staff", staff_path(staff), method: :delete, data: {confirm: "Are you sure?"}, class:"btn btn-default btn-large model-btn" %>
+                </div>
+          </div>
+      </div>
+  <% end %>
 </div>
 
 

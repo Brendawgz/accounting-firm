@@ -47,7 +47,7 @@ class SubtasksController < ApplicationController
     end
     
     def set_subtask
-        @subtask = subtask.find(params[:id])
+        @subtask = Subtask.find(params[:id])
     end
     
     def require_staff

@@ -209,21 +209,66 @@ a {
 // Staff, Team, Task, Subtask, Client CSS
 
 .model-div {
-    background: rgba(255, 255, 255, 0.8);
-    margin-top: 0px;
     border-top: 5px solid black;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.model-div-content {
+    padding-top: 20px;
+    padding-bottom: 20px;
     border-bottom: 5px solid black;
+    clear: both;
+    width: 100%;
+    position: relative;
+    left: 15px;
+}
+
+.model-div-title {
+    border-bottom: 5px solid black;
+    text-align: center;
+}
+
+.model-actions-add {
+    float: right;
+    position: relative;
+    top: -65px;
+    right: 20px;
 }
 
 .model-div-text {
-    width: 70%;
+    width: 65%;
+    min-height: 300px;
     float: left;
+    position: relative;
+}
+
+.model-div-text li {
+    font-size: 16px;
+}
+
+.model-actions-view {
+    position: absolute;
+    bottom: 0px;
+    right: 245px;
+}
+
+.model-actions-edit {
+    position: absolute;
+    bottom: 0px;
+    right: 150px;
+}
+
+.model-actions-delete {
+    position: absolute;
+    bottom: 0px;
+    right: 40px;
+}
+
+.model-btn-div {
+    float:right;
 }
 
 .model-div-img {
-    height: 180px;
-    width: 25%;
-    background-color: white;
-    margin-left: 15px;
     float: left;
+    min-height: 300px;
 }

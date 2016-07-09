@@ -1,5 +1,7 @@
 class Image < ActiveRecord::Base
   belongs_to :staff
+  belongs_to :client
+  belongs_to :team
   mount_uploader :picture, PictureUploader
   validate :picture_size
   

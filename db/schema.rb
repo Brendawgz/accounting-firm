@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160708174629) do
+ActiveRecord::Schema.define(version: 20160709234511) do
 
   create_table "clients", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20160708174629) do
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.string   "name"
+    t.string   "picture"
   end
 
   add_index "clients", ["email"], name: "index_clients_on_email", unique: true
@@ -42,9 +43,13 @@ ActiveRecord::Schema.define(version: 20160708174629) do
     t.integer  "staff_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "client_id"
+    t.integer  "team_id"
   end
 
+  add_index "images", ["client_id"], name: "index_images_on_client_id"
   add_index "images", ["staff_id"], name: "index_images_on_staff_id"
+  add_index "images", ["team_id"], name: "index_images_on_team_id"
 
   create_table "staffs", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false
@@ -66,10 +71,13 @@ ActiveRecord::Schema.define(version: 20160708174629) do
     t.boolean  "admin",                  default: false
     t.boolean  "team_leader",            default: false
     t.string   "name"
+    t.integer  "team_id"
+    t.string   "picture"
   end
 
   add_index "staffs", ["email"], name: "index_staffs_on_email", unique: true
   add_index "staffs", ["reset_password_token"], name: "index_staffs_on_reset_password_token", unique: true
+  add_index "staffs", ["team_id"], name: "index_staffs_on_team_id"
 
   create_table "subtasks", force: :cascade do |t|
     t.string   "name"
@@ -99,9 +107,9 @@ ActiveRecord::Schema.define(version: 20160708174629) do
 
   create_table "teams", force: :cascade do |t|
     t.string   "name"
-    t.integer  "members"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "picture"
   end
 
 end

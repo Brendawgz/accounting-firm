@@ -1,3 +1,50 @@
-<div class="content-div">
-    <h1>Index Team</h1>
+<div class="model-div">
+  <div class="model-div-title">
+    <h1>Team Listing</h1>
+  </div>
+  <% @teams.each do |team| %>
+      <div class="row model-div-content">
+          <div class="col-md-4 model-div-img">
+            <% if team.image %>
+              <%= image_tag(team.image.picture.url, size: "300x300") %>
+            <% else %>
+              <p><%= link_to 'Add team image', new_image_path(:team_id => team.id) %></p>
+            <% end %>
+          </div>
+          <div class="col-md-8 model-div-text">
+              <h3><%= team.name %></h3>
+              <ul>
+                <li>
+                  <%= team.email %>
+                </li>
+                <li>
+                    Members: <%= team.staffs.count %>
+                </li>
+                <% if team.staffs.empty? %>
+                  <li>
+                    This team currently has no staff assigned.
+                  </li>
+                <% else %>
+                  <%= team.staffs.each do |staff| %>
+                    <li>
+                      <%= staff.name %>
+                    </li>
+                    <li>
+                      <%= staff.email %>
+                    </li>
+                  <% end %>
+                <% end %>
+              </ul>
+                <div class="model-actions-view">
+                  <%= button_to "View Team", team_path(team), method: :get, class:"btn btn-default btn-large model-btn" %>
+                </div>
+                <div class="model-actions-edit">
+                  <%= button_to "Edit Team", edit_team_path(team), method: :get, class:"btn btn-default btn-large model-btn" %>
+                </div>
+                <div class="model-actions-delete">
+                  <%= button_to "Delete Team", team_path(team), method: :delete, data: {confirm: "Are you sure?"}, class:"btn btn-default btn-large model-btn" %>
+                </div>
+          </div>
+      </div>
+  <% end %>
 </div>

@@ -25,8 +25,18 @@ class ImagesController < ApplicationController
   # POST /images.json
   def create
     @image = Image.new(image_params)
-    @staff = Staff.find(params[:staff_id])
-    @image.staff = @staff
+    if params[:staff_id]
+      @staff = Staff.find(params[:staff_id])
+      @image.staff = @staff
+    end
+    if params[:client_id]
+      @client = Client.find(params[:client_id])
+      @image.client = @client
+    end
+    if params[:team_id]
+      @team = Team.find(params[:team_id])
+      @image.team = @team
+    end
     respond_to do |format|
       if @image.save
         format.html { redirect_to @image, notice: 'Image was successfully created.' }

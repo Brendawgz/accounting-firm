@@ -24,8 +24,8 @@ Rails.application.routes.draw do
   resources :teams  
   resources :tasks
   resources :subtasks
-  resources :staffs, only: [:index, :show]
-  resources :clients, only: [:index, :show]
+  resources :staffs
+  resources :clients
 
   # Example resource route with options:
   #   resources :products do
