@@ -25,7 +25,11 @@ class StaffsController < ApplicationController
     end
     
     def update
+        current_id = current_staff.id
         if @staff.update(staff_params)
+            if @staff.id == current_id
+                sign_in(Staff.find(current_id), :bypass => true)
+            end
             redirect_to staffs_path
         else
             render 'edit'

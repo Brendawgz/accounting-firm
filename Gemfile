@@ -19,6 +19,8 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'devise'
 # Add Devise Bootstrap views
 gem 'devise-bootstrap-views'
+# Add AWS SDK
+gem 'aws-sdk'
 
 # Add gems for image upload
 gem 'carrierwave'

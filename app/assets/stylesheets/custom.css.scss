@@ -213,16 +213,6 @@ a {
     background: rgba(255, 255, 255, 0.8);
 }
 
-.model-div-content {
-    padding-top: 20px;
-    padding-bottom: 20px;
-    border-bottom: 5px solid black;
-    clear: both;
-    width: 100%;
-    position: relative;
-    left: 15px;
-}
-
 .model-div-title {
     border-bottom: 5px solid black;
     text-align: center;
@@ -233,6 +223,21 @@ a {
     position: relative;
     top: -65px;
     right: 20px;
+}
+
+.model-div-content {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: 5px solid black;
+    clear: both;
+    width: 100%;
+    position: relative;
+    left: 15px;
+}
+
+.model-div-img {
+    float: left;
+    min-height: 300px;
 }
 
 .model-div-text {
@@ -264,11 +269,7 @@ a {
     right: 40px;
 }
 
-.model-btn-div {
-    float:right;
-}
-
-.model-div-img {
-    float: left;
-    min-height: 300px;
+.model-form {
+    padding: 15px;
+    border-bottom: 5px solid black;
 }

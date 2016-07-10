@@ -6,10 +6,10 @@
   <% @staffs.each do |staff| %>
       <div class="row model-div-content">
           <div class="col-md-4 model-div-img">
-            <% if staff.picture %>
-              <%= image_tag(staff.picture.url, size: "300x300") %>
+            <% if staff.picture.blank? %>
+              <%= image_tag("profile-default.png", size: "300x300") %>
             <% else %>
-              <p><%= link_to 'Add staff image', edit_staff_path(staff) %></p>
+              <%= image_tag(staff.picture.url, size: "300x300") %>
             <% end %>
           </div>
           <div class="col-md-8 model-div-text">
