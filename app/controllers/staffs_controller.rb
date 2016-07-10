@@ -26,7 +26,6 @@ class StaffsController < ApplicationController
     
     def update
         if @staff.update(staff_params)
-            sign_in(@staff, :bypass => true)
             redirect_to staffs_path
         else
             render 'edit'
