@@ -64,7 +64,7 @@
           <%= f.label :teams %>
         </div>
         <div class="col-sm-8">
-          <%= f.collection_select :team_id, Team.all, :id, :name, {}, { :class => 'form-options' } %>
+          <%= f.collection_select :team_id, Team.all, :id, :name, { :include_blank => 'Unassigned' }, { :class => 'form-options' } %>
         </div>
       </div>
 
