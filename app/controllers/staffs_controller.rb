@@ -2,8 +2,15 @@ class StaffsController < ApplicationController
     before_action :set_staff, only: [:edit, :update, :show, :destroy]
     before_action :require_admin
     
+    def search
+        @staffs = Staff.search(params[:search_param])
+        render 'staffs/search'
+   end
+    
     def index
-        @staffs = Staff.all
+        unless @staffs
+            @staffs = Staff.all
+        end
     end
         
     def new
@@ -47,7 +54,7 @@ class StaffsController < ApplicationController
     
     private
     def staff_params
-      params.require(:staff).permit(:name, :email, :password, :password_confirmation, :admin, :team_id, :picture)
+      params.require(:staff).permit(:name, :email, :password, :password_confirmation, :admin, :team_id, :picture, :comments)
     end
     
     def set_staff

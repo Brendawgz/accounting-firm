@@ -13,6 +13,23 @@
 .container {
     background: rgba(248, 248, 248, .2);
     color: black;
+    padding-top: 15px;
+}
+
+.title {
+    text-align: center;
+    background: #F8F8F8;
+    padding-bottom: 2px;
+    padding-top: 2px;
+    border-radius: 3px 3px 0px 0px; 
+}
+
+.title a {
+    color: black !important;
+}
+
+a {
+    color: black !important;
 }
 
 .navbar-nav.nav-justified > li{
@@ -22,6 +39,7 @@
 .navbar {
     margin: 0px;
     border: none;
+    border-radius: none !important;
     background-image: none;
     background-repeat: no-repeat;
 }
@@ -60,21 +78,10 @@
 .dropdown-menu>li>a {
     text-align: center;
  }
- 
-.title {
-    text-align: center;
-}
 
-.title a {
-    color: black !important;
-}
-
-a {
-    color: black !important;
-}
-
-.footer {
-    background: rgba(255, 255, 255, 0.8);
+.footer-div {
+    background: #F8F8F8;
+    border-radius: 0px 0px 3px 3px; 
 }
 
 // Homepage CSS
@@ -107,7 +114,7 @@ a {
     margin: auto;
 }
 
-@media all and (min-width: 1024px) and (max-width: 1920px) { 
+@media all and (min-width: 1024px) and (max-width: 2040px) { 
     .carousel-caption {
         position: absolute; 
         bottom: 60px;
@@ -218,11 +225,16 @@ a {
     text-align: center;
 }
 
+.search-box {
+    max-width: 16%;
+    margin: 0 auto;
+    margin-bottom: 5px;
+}
+
 .model-actions-add {
-    float: right;
+    margin: 0 auto;
     position: relative;
-    top: -65px;
-    right: 20px;
+    top: -10px;
 }
 
 .model-div-content {
@@ -251,7 +263,12 @@ a {
     font-size: 16px;
 }
 
-.model-actions-view {
+.comments-li {
+    position: relative;
+    display: inline-block;
+}
+
+.model-actions-view, .model-actions-index {
     position: absolute;
     bottom: 0px;
     right: 245px;
@@ -272,4 +289,24 @@ a {
 .model-form {
     padding: 15px;
     border-bottom: 5px solid black;
+}
+
+.file-field {
+    position: relative;
+    top: 5px;
+}
+
+.checkbox {
+    position: relative;
+    top: 10px;
+}
+
+.select-box {
+    background: #FFFFFF;
+    height: 30px;
+}
+
+.model-form-back-button {
+    position: relative;
+    right: 10px;
 }

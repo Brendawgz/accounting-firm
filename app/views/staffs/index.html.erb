@@ -1,66 +1,20 @@
 <div class="model-div">
   <div class="model-div-title">
     <h1>Staff Listing</h1>
+    <%= form_tag staff_search_path, method: :get do %>
+    <div class="form-group">
+      <div class="search-box">
+        <%= text_field_tag :search_param, params[:search_param], 
+                          placeholder: "Enter in a name or email", autofocus: true, 
+                          class: "form-control input-md" %>
+      </div>
+      <%= button_tag(type: :submit, class: "btn btn-md btn-default search-button") do %>
+        Search for staff
+      <% end %>
+    </div>
+    <% end %>
     <%= button_to "Add Staff", new_staff_path, method: :get, class:"btn btn-default btn-large model-actions-add" %>
   </div>
-  <% @staffs.each do |staff| %>
-      <div class="row model-div-content">
-          <div class="col-md-4 model-div-img">
-            <% if staff.picture.blank? %>
-              <%= image_tag("profile-default.png", size: "300x300") %>
-            <% else %>
-              <%= image_tag(staff.picture.url, size: "300x300") %>
-            <% end %>
-          </div>
-          <div class="col-md-8 model-div-text">
-              <h3><%= staff.name %></h3>
-              <ul>
-                <li>
-                  <%= staff.email %>
-                </li>
-                <% if staff.subtasks.empty? %>
-                  <li>
-                    This staff does not currently have a task
-                  </li>
-                <% else %>
-                  <%= staff.subtasks.each do |subtask| %>
-                    <li>
-                      <%= subtask %>
-                    </li>
-                  <% end %>
-                <% end %>
-                <% if staff.team %>
-                  <li>
-                    <%= staff.team.name %>
-                  </li>
-                <% else %>
-                  <li>
-                    This staff does not currently belong to a team
-                  </li>
-                <% end %>
-                <% if staff.admin? %>
-                  <li>
-                    Admin
-                  </li>
-                <% end %>
-                <% if staff.team_leader? %>
-                  <li>
-                    Team Leader
-                  </li>
-                <% end %>
-              </ul>
-                <div class="model-actions-view">
-                  <%= button_to "View Staff", staff_path(staff), method: :get, class:"btn btn-default btn-large model-btn" %>
-                </div>
-                <div class="model-actions-edit">
-                  <%= button_to "Edit Staff", edit_staff_path(staff), method: :get, class:"btn btn-default btn-large model-btn" %>
-                </div>
-                <div class="model-actions-delete">
-                  <%= button_to "Delete Staff", staff_path(staff), method: :delete, data: {confirm: "Are you sure?"}, class:"btn btn-default btn-large model-btn" %>
-                </div>
-          </div>
-      </div>
-  <% end %>
+  <%= render 'staffs/list' %>
 </div>
-
 

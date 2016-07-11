@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   resources :tasks
   resources :subtasks
   resources :staffs
+  get 'staff_search' => 'staffs#search'
   resources :clients
 
   # Example resource route with options:
