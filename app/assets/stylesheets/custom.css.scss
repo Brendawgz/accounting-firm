@@ -84,6 +84,12 @@ a {
     border-radius: 0px 0px 3px 3px; 
 }
 
+.field_with_errors {
+    input {
+        border: 2px solid red
+    }
+}
+
 // Homepage CSS
 
 .image-link a {
@@ -226,9 +232,17 @@ a {
 }
 
 .search-box {
-    max-width: 16%;
     margin: 0 auto;
     margin-bottom: 5px;
+}
+
+.search-box-staff {
+    width: 183px;
+    
+}
+
+.search-box-team {
+    width: 210px;
 }
 
 .model-actions-add {
@@ -268,22 +282,9 @@ a {
     display: inline-block;
 }
 
-.model-actions-view, .model-actions-index {
-    position: absolute;
-    bottom: 0px;
-    right: 245px;
-}
-
-.model-actions-edit {
-    position: absolute;
-    bottom: 0px;
-    right: 150px;
-}
-
-.model-actions-delete {
-    position: absolute;
-    bottom: 0px;
-    right: 40px;
+.model-actions-view, .model-actions-index, .model-actions-edit, .model-actions-delete  {
+    float: right;
+    padding: 5px;
 }
 
 .model-form {

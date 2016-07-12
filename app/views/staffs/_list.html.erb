@@ -11,49 +11,44 @@
       <h3><%= staff.name %></h3>
       <ul>
         <li>
-          <%= staff.email %>
+          Email: <%= staff.email %>
         </li>
-        <% if staff.subtasks.empty? %>
-          <li>
-            This staff does not currently have a task
-          </li>
-        <% else %>
-          <%= staff.subtasks.each do |subtask| %>
-            <li>
-              <%= subtask %>
-            </li>
-          <% end %>
-        <% end %>
-        <% if staff.team %>
-          <li>
-            <%= staff.team.name %>
-          </li>
-        <% else %>
-          <li>
-            This staff does not currently belong to a team
-          </li>
-        <% end %>
         <% if staff.admin? %>
           <li>
             Admin
-          </li>
-        <% else %>
-          <li>
-              This staff is not an admin
           </li>
         <% end %>
         <% if staff.team_leader? %>
           <li>
             Team Leader
           </li>
+        <% end %>
+        <% if staff.team %>
+          <li>
+            Team: <%= link_to staff.team.name, team_path(staff.team) %>
+          </li>
         <% else %>
           <li>
-            This staff is not a leader of any team
+            This staff does not currently belong to a team
           </li>
         <% end %>
-        <% if staff.comments %>
+        <% if staff.subtasks.empty? %>
           <li>
-            <%= staff.comments %>
+            This staff does not currently have any tasks
+          </li>
+        <% else %>
+          <li>This staff has <%= pluralize(staff.subtasks.count, 'task') %> </li>
+          <ul>
+	          <% staff.subtasks.each do |subtask| %>
+		          <li>
+		          	<%= link_to subtask.name, subtask_path(subtask) %>
+		          </li>
+			      <% end %>
+		      </ul>
+        <% end %>
+        <% if staff.comments && !staff.comments.blank? %>
+          <li>
+            Comments: <%= staff.comments %>
           </li>
         <% else %>
           <li>
@@ -61,14 +56,16 @@
           </li>
         <% end %>
       </ul>
-      <div class="model-actions-view">
-        <%= button_to "View Staff", staff_path(staff), method: :get, class:"btn btn-default btn-large model-btn" %>
-      </div>
-      <div class="model-actions-edit">
-        <%= button_to "Edit Staff", edit_staff_path(staff), method: :get, class:"btn btn-default btn-large model-btn" %>
-      </div>
-      <div class="model-actions-delete">
-        <%= button_to "Delete Staff", staff_path(staff), method: :delete, data: {confirm: "Are you sure?"}, class:"btn btn-default btn-large model-btn" %>
+      <div class="model-actions">
+        <div class="model-actions-delete">
+          <%= button_to "Delete Staff", staff_path(staff), method: :delete, data: {confirm: "Are you sure?"}, class:"btn btn-default btn-large model-btn" %>
+        </div>
+        <div class="model-actions-edit">
+          <%= button_to "Edit Staff", edit_staff_path(staff), method: :get, class:"btn btn-default btn-large model-btn" %>
+        </div>
+        <div class="model-actions-index">
+          <%= button_to "View Staff", staff_path(staff), method: :get, class:"btn btn-default btn-large model-btn" %>
+        </div>
       </div>
     </div>
   </div>

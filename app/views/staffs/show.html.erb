@@ -11,68 +11,101 @@
         <% end %>
       </div>
       <div class="col-md-8 model-div-text">
+        <h3><%= @staff.name %></h3>
+        <ul>
+        <li>
+          Email: <%= @staff.email %>
+        </li>
+        <% if @staff.admin? %>
+          <li>
+            Admin
+          </li>
+        <% end %>
+        <% if @staff.team_leader? %>
+          <li>
+            Team Leader
+          </li>
+        <% end %>
+        <% if @staff.team %>
+          <li>
+            Team: <%= link_to @staff.team.name, team_path(@staff.team) %>
+          </li>
           <ul>
-            <li>
-              <%= @staff.email %>
-            </li>
-            <% if @staff.subtasks.empty? %>
-              <li>
-                This @staff does not currently have a task
-              </li>
-            <% else %>
-              <%= @staff.subtasks.each do |subtask| %>
+            <li>This team has <%= pluralize(@staff.team.staffs.count, 'member') %></li>
+            <ul>
+              <% @staff.team.staffs.each do |staff| %>
                 <li>
-                  <%= subtask %>
+                  <%= link_to staff.name, staff_path(staff) %>
                 </li>
               <% end %>
-            <% end %>
-            <% if @staff.team %>
-              <li>
-                <%= @staff.team.name %>
-              </li>
-            <% else %>
-              <li>
-                This @staff does not currently belong to a team
-              </li>
-            <% end %>
-            <% if @staff.admin? %>
-              <li>
-                Admin
-              </li>
-            <% else %>
-              <li>
-                  This staff is not an admin
-              </li>
-            <% end %>
-            <% if @staff.team_leader? %>
-              <li>
-                Team Leader
-              </li>
-            <% else %>
-              <li>
-                This staff is not a leader of any team
-              </li>
-            <% end %>
-            <% if @staff.comments %>
-              <li>
-                <%= @staff.comments %>
-              </li>
-            <% else %>
-              <li>
-                This staff does not have any comments
-              </li>
-            <% end %>
+            </ul>
+            <li>This team has <%= pluralize(@staff.team.tasks.count, 'task') %></li>
+            <ul>
+              <% @staff.team.tasks.each do |task| %>
+                <li>
+                	<%= link_to task.name, task_path(task) %>
+                </li>
+      	      <% end %>
+      	     </ul>
           </ul>
-          <div class="model-actions-index">
-            <%= button_to "View All Staff", staffs_path, method: :get, class:"btn btn-default btn-large model-btn" %>
-          </div>
-          <div class="model-actions-edit">
-            <%= button_to "Edit Staff", edit_staff_path(@staff), method: :get, class:"btn btn-default btn-large model-btn" %>
-          </div>
-          <div class="model-actions-delete">
-            <%= button_to "Delete Staff", staff_path(@staff), method: :delete, data: {confirm: "Are you sure?"}, class:"btn btn-default btn-large model-btn" %>
-          </div>
+        <% else %>
+          <li>
+            This staff does not currently belong to a team
+          </li>
+        <% end %>
+        <% if @staff.subtasks.empty? %>
+          <li>
+            This staff does not currently have any tasks
+          </li>
+        <% else %>
+          <li>This staff has <%= pluralize(@staff.subtasks.count, 'task') %></li>
+          <ul>
+	          <% @staff.subtasks.each do |subtask| %>
+		          <li>
+		          	<%= link_to subtask.name, subtask_path(subtask) %>
+		          </li>
+		          <ul>
+		            <li>
+		              Category: <%= subtask.category %>
+		            </li>
+		            <li>
+		              Deadline: <%= subtask.deadline %>
+		            </li>
+		            <% if subtask.comments && !subtask.comments.blank? %>
+                  <li>
+                    Comments: <%= subtask.comments %>
+                  </li>
+                <% else %>
+                  <li>
+                    This subtask does not have any comments
+                  </li>
+                <% end %>
+		          </ul>
+			      <% end %>
+		      </ul>
+        <% end %>
+        <% if @staff.comments && !@staff.comments.blank? %>
+          <li>
+            Comments: <%= @staff.comments %>
+          </li>
+        <% else %>
+          <li>
+            This staff does not have any comments
+          </li>
+        <% end %>
+      </ul>
+      <div class="model-actions">
+        <div class="model-actions-delete">
+          <%= button_to "Delete Staff", staff_path(@staff), method: :delete, data: {confirm: "Are you sure?"}, class:"btn btn-default btn-large model-btn" %>
+        </div>
+        <div class="model-actions-edit">
+          <%= button_to "Edit Staff", edit_staff_path(@staff), method: :get, class:"btn btn-default btn-large model-btn" %>
+        </div>
+        <div class="model-actions-index">
+          <%= button_to "View All Staff", staffs_path, method: :get, class:"btn btn-default btn-large model-btn" %>
+        </div>
       </div>
+    </div>
   </div>
 </div>
 

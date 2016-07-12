@@ -1,3 +1,71 @@
-<div class="content-div">
-    <h1>Show Team</h1>
+<div class="model-div">
+  <div class="model-div-title">
+    <h1><%= @team.name %></h1>
+  </div>
+  <div class="row model-div-content">
+    <div class="col-md-4 model-div-img">
+      <% if @team.picture.blank? %>
+        <%= image_tag("group-profile-default.png", size: "300x300") %>
+      <% else %>
+        <%= image_tag(@team.picture.url, size: "300x300") %>
+      <% end %>
+    </div>
+    <div class="col-md-8 model-div-text">
+      <h3><%= @team.name %></h3>
+        <ul>
+          <% if !@team.staffs.empty? %>
+            <li>This team has <%= pluralize(@team.staffs.count, 'member') %></li>
+            <ul>
+              <% @team.staffs.each do |staff| %>
+                <li>
+                	<%= link_to staff.name, staff_path(staff) %>
+                </li>
+      	      <% end %>
+            </ul>
+          <% else %>
+          	<li>
+              This @team does not currently have any staff
+          	</li>
+          <% end %>
+          <% if !@team.tasks.empty? %>
+            <li>This team has <%= pluralize(@team.tasks.count, 'task') %></li>
+            <ul>
+              <% @team.tasks.each do |task| %>
+                <li>
+                	<%= link_to task.name, task_path(task) %>
+                </li>
+      	      <% end %>
+            </ul>
+          <% else %>
+          	<li>
+              This team does not currently have any tasks
+          	</li>
+          <% end %>
+          <% if @team.comments && !@team.comments.blank? %>
+            <li>
+              <%= @team.comments %>
+            </li>
+          <% else %>
+            <li>
+              This team currently does not have any comments
+            </li>
+          <% end %>
+        </ul>
+      <div class="model-actions">
+        <div class="model-actions-delete">
+          <%= button_to "Delete Team", team_path(@team), method: :delete, data: {confirm: "Are you sure?"}, class:"btn btn-default btn-large model-btn" %>
+        </div>
+        <div class="model-actions-edit">
+          <%= button_to "Edit Team", edit_team_path(@team), method: :get, class:"btn btn-default btn-large model-btn" %>
+        </div>
+        <div class="model-actions-index">
+          <%= button_to "View All Teams", teams_path, method: :get, class:"btn btn-default btn-large model-btn" %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
+
+
+

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160711213128) do
+ActiveRecord::Schema.define(version: 20160712193030) do
 
   create_table "clients", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -79,7 +79,6 @@ ActiveRecord::Schema.define(version: 20160711213128) do
 
   create_table "subtasks", force: :cascade do |t|
     t.string   "name"
-    t.string   "type"
     t.datetime "deadline"
     t.decimal  "completion"
     t.string   "comments"
@@ -87,12 +86,12 @@ ActiveRecord::Schema.define(version: 20160711213128) do
     t.integer  "staff_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "category"
   end
 
   create_table "tasks", force: :cascade do |t|
     t.string   "name"
     t.decimal  "charge"
-    t.string   "type"
     t.datetime "deadline"
     t.decimal  "completion"
     t.string   "comments"
@@ -101,6 +100,7 @@ ActiveRecord::Schema.define(version: 20160711213128) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "paid"
+    t.string   "category"
   end
 
   create_table "teams", force: :cascade do |t|

@@ -22,11 +22,15 @@ Rails.application.routes.draw do
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   resources :teams  
+  get 'team_search' => 'staffs#search'
   resources :tasks
+  get 'task_search' => 'staffs#search'
   resources :subtasks
+  get 'subtask_search' => 'staffs#search'
   resources :staffs
   get 'staff_search' => 'staffs#search'
   resources :clients
+  get 'client_search' => 'staffs#search'
 
   # Example resource route with options:
   #   resources :products do

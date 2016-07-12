@@ -2,6 +2,11 @@ class TeamsController < ApplicationController
     before_action :set_team, only: [:edit, :update, :show, :destroy]
     before_action :require_admin, only: [:index, :new, :create, :destroy]
     
+    def search
+        @teams = Team.search(params[:search_param])
+        render 'teams/search'
+    end
+   
     def index
         @teams = Team.all
     end
