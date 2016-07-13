@@ -1,0 +1,13 @@
+<div class="model-div">
+  <div class="model-div-title">
+    <h1>Search Results</h1>
+    <%= button_to "Back to All Clients", clients_path, method: :get, class:"btn btn-default btn-large model-actions-add" %>
+  </div>
+  <% if @clients.count > 0 %>
+    <%= render 'clients/list' %>
+  <% else %>
+      <div class="row model-div-content">
+        <h2 style="text-align:center;">No clients were found. Please try searching again.</h2>
+      </div>
+  <% end %>
+</div>

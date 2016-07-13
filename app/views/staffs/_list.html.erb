@@ -29,12 +29,12 @@
           </li>
         <% else %>
           <li>
-            This staff does not currently belong to a team
+            This staff currently does not belong to a team
           </li>
         <% end %>
         <% if staff.subtasks.empty? %>
           <li>
-            This staff does not currently have any tasks
+            This staff currently does not have any tasks
           </li>
         <% else %>
           <li>This staff has <%= pluralize(staff.subtasks.count, 'task') %> </li>
@@ -52,7 +52,7 @@
           </li>
         <% else %>
           <li>
-            This staff does not have any comments
+            This staff currently does not have any comments
           </li>
         <% end %>
       </ul>

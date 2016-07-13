@@ -1,0 +1,72 @@
+<% @tasks.each do |task| %>
+  <div class="row model-div-content">
+    <div class="col-md-4 model-div-img">
+      <% if task.picture.blank? %>
+        <%= image_tag("profile-default.png", size: "300x300") %>
+      <% else %>
+        <%= image_tag(task.picture.url, size: "300x300") %>
+      <% end %>
+    </div>
+    <div class="col-md-8 model-div-text">
+      <h3><%= task.name %></h3>
+      <ul>
+        <li>
+          Email: <%= task.email %>
+        </li>
+        <% if task.admin? %>
+          <li>
+            Admin
+          </li>
+        <% end %>
+        <% if task.team_leader? %>
+          <li>
+            Team Leader
+          </li>
+        <% end %>
+        <% if task.team %>
+          <li>
+            Team: <%= link_to task.team.name, team_path(task.team) %>
+          </li>
+        <% else %>
+          <li>
+            This task currently does not belong to a team
+          </li>
+        <% end %>
+        <% if task.subtasks.empty? %>
+          <li>
+            This task currently does not have any tasks
+          </li>
+        <% else %>
+          <li>This task has <%= pluralize(task.subtasks.count, 'task') %> </li>
+          <ul>
+	          <% task.subtasks.each do |subtask| %>
+		          <li>
+		          	<%= link_to subtask.name, subtask_path(subtask) %>
+		          </li>
+			      <% end %>
+		      </ul>
+        <% end %>
+        <% if task.comments && !task.comments.blank? %>
+          <li>
+            Comments: <%= task.comments %>
+          </li>
+        <% else %>
+          <li>
+            This task currently does not have any comments
+          </li>
+        <% end %>
+      </ul>
+      <div class="model-actions">
+        <div class="model-actions-delete">
+          <%= button_to "Delete Task", task_path(task), method: :delete, data: {confirm: "Are you sure?"}, class:"btn btn-default btn-large model-btn" %>
+        </div>
+        <div class="model-actions-edit">
+          <%= button_to "Edit Task", edit_task_path(task), method: :get, class:"btn btn-default btn-large model-btn" %>
+        </div>
+        <div class="model-actions-index">
+          <%= button_to "View Task", task_path(task), method: :get, class:"btn btn-default btn-large model-btn" %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

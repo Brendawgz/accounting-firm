@@ -18,13 +18,26 @@
             <ul>
               <% @team.staffs.each do |staff| %>
                 <li>
-                	<%= link_to staff.name, staff_path(staff) %>
+                	<%= link_to staff.name, staff_path(staff) %> (<%= pluralize(staff.subtasks.count, 'task') %>)
                 </li>
+                <ul>
+                  <% if staff.subtasks.empty? %>
+                    <li>
+                      This staff currently does not have any tasks
+                    </li>
+                  <% else %>
+                    <% staff.subtasks.each do |subtask| %>
+                      <li>
+                        <%= link_to subtask.name, subtask_path(subtask) %>
+                      </li>
+                    <% end %>
+                  <% end %>
+                </ul>
       	      <% end %>
             </ul>
           <% else %>
           	<li>
-              This @team does not currently have any staff
+              This team currently does not have any staff
           	</li>
           <% end %>
           <% if !@team.tasks.empty? %>
@@ -34,11 +47,40 @@
                 <li>
                 	<%= link_to task.name, task_path(task) %>
                 </li>
+                <ul>
+                  <li>
+                    Category: <%= task.category %>
+                  </li>
+                  <li>
+                    Charge: RM<%= task.charge %>
+                  </li>
+                  <% if task.paid %>
+                    <li>
+                      Payment Received
+                    </li>
+                  <% else %>
+                    <li>
+                      Payment Pending
+                    </li>
+                  <% end %>
+                  <li>
+                    Deadline: <%= task.deadline %>
+                  </li>
+                  <% if task.comments && !task.comments.blank? %>
+                    <li>
+                      Comments: <%= task.comments %>
+                    </li>
+                  <% else %>
+                    <li>
+                      This task currently does not have any comments
+                    </li>
+                  <% end %>
+                </ul>
       	      <% end %>
             </ul>
           <% else %>
           	<li>
-              This team does not currently have any tasks
+              This team currently does not have any tasks
           	</li>
           <% end %>
           <% if @team.comments && !@team.comments.blank? %>

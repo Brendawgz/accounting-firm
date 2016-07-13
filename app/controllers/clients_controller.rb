@@ -2,6 +2,11 @@ class ClientsController < ApplicationController
     before_action :set_client, only: [:edit, :update, :show, :destroy]
     before_action :require_admin
     
+    def search
+        @clients = Client.search(params[:search_param])
+        render 'clients/search'
+    end
+    
     def index
         @clients = Client.all
     end
@@ -20,7 +25,6 @@ class ClientsController < ApplicationController
     end
     
     def edit
-        
     end
     
     def update
@@ -43,7 +47,7 @@ class ClientsController < ApplicationController
     
     private
     def client_params
-      params.require(:client).permit(:name, :email, :picture)
+      params.require(:client).permit(:name, :email, :password, :password_confirmation, :picture, :comments)
     end
     
     def set_client

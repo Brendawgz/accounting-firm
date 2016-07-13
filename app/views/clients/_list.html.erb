@@ -1,0 +1,53 @@
+<% @clients.each do |client| %>
+  <div class="row model-div-content">
+    <div class="col-md-4 model-div-img">
+      <% if client.picture.blank? %>
+        <%= image_tag("buildings.png", size: "300x300") %>
+      <% else %>
+        <%= image_tag(client.picture.url, size: "300x300") %>
+      <% end %>
+    </div>
+    <div class="col-md-8 model-div-text">
+      <h3><%= client.name %></h3>
+      <ul>
+        <li>
+          Email: <%= client.email %>
+        </li>
+        <% if client.tasks.empty? %>
+          <li>
+            This client currently does not have any tasks
+          </li>
+        <% else %>
+          <li>This client has <%= pluralize(client.tasks.count, 'task') %> </li>
+          <ul>
+	          <% client.tasks.each do |task| %>
+		          <li>
+		          	<%= link_to task.name, task_path(task) %>
+		          </li>
+			      <% end %>
+		      </ul>
+        <% end %>
+        <% if client.comments && !client.comments.blank? %>
+          <li>
+            Comments: <%= client.comments %>
+          </li>
+        <% else %>
+          <li>
+            This client currently does not have any comments
+          </li>
+        <% end %>
+      </ul>
+      <div class="model-actions">
+        <div class="model-actions-delete">
+          <%= button_to "Delete Client", client_path(client), method: :delete, data: {confirm: "Are you sure?"}, class:"btn btn-default btn-large model-btn" %>
+        </div>
+        <div class="model-actions-edit">
+          <%= button_to "Edit Client", edit_client_path(client), method: :get, class:"btn btn-default btn-large model-btn" %>
+        </div>
+        <div class="model-actions-index">
+          <%= button_to "View Client", client_path(client), method: :get, class:"btn btn-default btn-large model-btn" %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

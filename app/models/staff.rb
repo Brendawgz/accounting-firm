@@ -4,7 +4,7 @@ class Staff < ActiveRecord::Base
   devise :database_authenticatable, :confirmable,
          :recoverable, :rememberable, :trackable
   belongs_to :team
-  has_many :subtasks, dependent: :destroy
+  has_many :subtasks
   has_one :image
   validates :name, presence: true
   validates :email, presence: true

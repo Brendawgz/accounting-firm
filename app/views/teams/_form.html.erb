@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-xs-12">
-    <%= form_for(@staff, :html => {class: "form-horizontal", role: "form"}) do |f| %>
+    <%= form_for(@team, :html => {class: "form-horizontal", role: "form"}) do |f| %>
     
       <div class="form-group">
         <div class="control-label col-sm-2">
@@ -13,53 +13,6 @@
       </div>
       
       <div class="form-group">
-        <div class="control-label col-sm-2">
-          <%= f.label :email %>
-        </div>
-        <div class="col-sm-8">
-          <%= f.email_field :email, class:"form-control", placeholder: "Enter email" %>
-          <small class="text-muted">
-            This field is required.
-            <% if !@staff.new_record? %>
-              Email changes require confirmation via email.
-            <% end %>
-          </small>
-        </div>
-      </div>
-      
-      <% if @staff.id == current_staff.id || @staff.new_record? %>
-
-      <div class="form-group">
-        <div class="control-label col-sm-2">
-          <%= f.label :password %>
-        </div>
-        <div class="col-sm-8">
-          <%= f.password_field :password, class:"form-control" %>
-          <small class="text-muted">
-            <% if !@staff.new_record? %>
-              If you do not wish to change your password, leave this field blank.
-            <% end %>
-          </small>
-        </div>
-      </div>
-      
-      <div class="form-group">
-        <div class="control-label col-sm-2">
-          <%= f.label :password_confirmation %>
-        </div>
-        <div class="col-sm-8">
-          <%= f.password_field :password_confirmation, class:"form-control" %>
-          <small class="text-muted">
-            <% if !@staff.new_record? %>
-              This field is only required if you wish to change your password.
-            <% end %>
-          </small>
-        </div>
-      </div>
-      
-      <% end %>
-      
-      <div class="form-group">
         <%= f.label :picture, :class => 'control-label col-sm-2' %>
         <div class="col-sm-10">
           <%= f.file_field :picture, :class => 'file-field', accept: 'image/jpeg, image/jpg, image/png' %>
@@ -68,25 +21,33 @@
         <%=f.error_span(:picture) %>
       </div>
       
-      <% unless current_staff.id == @staff.id %>
-  
       <div class="form-group">
         <div class="control-label col-sm-2">
-          <%= f.label :admin %>
+          <%= f.label :members %>
         </div>
         <div class="col-sm-8">
-          <%= f.check_box (:admin), { :class => "checkbox" } %>
+          <% Staff.all.each do |staff| %>
+             <label>
+                <%= check_box_tag "team[staff_ids][]", staff.id, @team.staffs.include?(staff) %>
+                <%= staff.name %>
+             </label>
+          <% end %>
         </div>
       </div>
       
-      <% end %>
-      
       <div class="form-group">
         <div class="control-label col-sm-2">
-          <%= f.label :teams %>
+          <%= f.label :tasks %>
         </div>
         <div class="col-sm-8">
-          <%= f.collection_select :team_id, Team.all, :id, :name, { :include_blank => 'Unassigned' }, { :class => 'select-box' } %>
+          <% @tasks.each do |task| %>
+             <label>
+                <%= check_box_tag "team[task_ids][]", task.id, @team.tasks.include?(task) %>
+                <%= task.name %>
+             </label>
+          <% end %>
+          <br/>
+          <small class="text-muted">Tasks assigned to other teams are not displayed.</small>
         </div>
       </div>
       
@@ -95,14 +56,13 @@
           <%= f.label :comments %>
         </div>
         <div class="col-sm-8">
-          <%= f.text_area :comments, class:"form-control", placeholder: "Enter comments", maxlength: 330, size: "20x4" %>
-          <small class="text-muted">Max limit of 330 characters</small>
+          <%= f.text_area :comments, class:"form-control", placeholder: "Enter comments", size: "30x12" %>
         </div>
       </div>
 
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
-          <%= f.submit(@staff.new_record? ?  "Add Staff" : "Save Changes", class: "btn btn-default btn-large") %>
+          <%= f.submit(@team.new_record? ?  "Add Team" : "Save Changes", class: "btn btn-default btn-large") %>
         </div>
       </div>
     <% end %>

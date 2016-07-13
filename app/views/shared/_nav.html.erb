@@ -45,7 +45,9 @@
                  <li id="navbar-link"><%= link_to 'Manage Staff', staffs_path %></li>
                  <li id="navbar-link"><%= link_to 'Manage Teams', teams_path %></li>
                  <li id="navbar-link"><%= link_to 'Manage Clients', clients_path %></li>
-                 <li id="navbar-link"><%= link_to 'Manage Tasks', tasks_path %></li>
+                 <li id="navbar-link"><%= link_to 'Create Task for Client', new_task_path %></li>
+                 <li id="navbar-link"><%= link_to 'Manage Team Tasks', tasks_path %></li>
+                 <li id="navbar-link"><%= link_to 'Manage Staff Tasks', subtasks_path %></li>
                  <li role="separator" class="divider"></li>
               <% end %>
               <% if current_staff.team_leader == true %>
@@ -54,6 +56,7 @@
                  <li id="navbar-link"><%= link_to 'Manage Subtask', subtasks_path %></li>
                  <li role="separator" class="divider"></li>
               <% end %> 
+              <li class="dropdown-header">Staff Actions</li>
               <li id="navbar-link"><%= link_to 'My Team', team_path(current_staff.id) %></li>
               <li id="navbar-link"><%= link_to 'My Tasks', subtasks_path(current_staff.id) %></li>
               <li id="navbar-link"><%= link_to 'Log Out', destroy_staff_session_path, method: :delete %></li>
@@ -61,7 +64,8 @@
           <% elsif client_signed_in? %>
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Client <span class="caret"></span></a>
             <ul class="dropdown-menu">
-               <li id="navbar-link"><%= link_to 'Progress Report', tasks_path(current_client.id) %></li>
+              <li class="dropdown-header">Client Actions</li>
+               <li id="navbar-link"><%= link_to 'Progress Report', task_path(current_client.id) %></li>
                <li id="navbar-link"><%= link_to 'Log Out', destroy_client_session_path, method: :delete %></li>
              </ul>
           <% end %>

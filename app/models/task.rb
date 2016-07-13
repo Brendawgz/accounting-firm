@@ -7,6 +7,6 @@ class Task < ActiveRecord::Base
    validates :category, presence: true
    #validates :deadline, presence: true
    validates :completion, presence: true
-   #validates :team_id, presence: true
-   #validates :client_id, presence: true
+   validates :team_id, presence: true
+   validates :client_id, presence: true
 end

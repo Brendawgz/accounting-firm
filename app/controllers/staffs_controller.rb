@@ -5,12 +5,10 @@ class StaffsController < ApplicationController
     def search
         @staffs = Staff.search(params[:search_param])
         render 'staffs/search'
-   end
+    end
     
     def index
-        unless @staffs
-            @staffs = Staff.all
-        end
+        @staffs = Staff.all
     end
         
     def new
