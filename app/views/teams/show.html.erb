@@ -28,7 +28,7 @@
                   <% else %>
                     <% staff.subtasks.each do |subtask| %>
                       <li>
-                        <%= link_to subtask.name, subtask_path(subtask) %>
+                        <%= link_to subtask.name, subtask_path(subtask) %> (<%= link_to subtask.task.name, task_path(subtask.task) %>)
                       </li>
                     <% end %>
                   <% end %>
@@ -93,17 +93,19 @@
             </li>
           <% end %>
         </ul>
-      <div class="model-actions">
-        <div class="model-actions-delete">
-          <%= button_to "Delete Team", team_path(@team), method: :delete, data: {confirm: "Are you sure?"}, class:"btn btn-default btn-large model-btn" %>
-        </div>
-        <div class="model-actions-edit">
-          <%= button_to "Edit Team", edit_team_path(@team), method: :get, class:"btn btn-default btn-large model-btn" %>
-        </div>
-        <div class="model-actions-index">
-          <%= button_to "View All Teams", teams_path, method: :get, class:"btn btn-default btn-large model-btn" %>
-        </div>
-      </div>
+        <% if current_staff.admin %>
+          <div class="model-actions">
+            <div class="model-actions-delete">
+              <%= button_to "Delete Team", team_path(@team), method: :delete, data: {confirm: "Are you sure?"}, class:"btn btn-default btn-large model-btn" %>
+            </div>
+            <div class="model-actions-edit">
+              <%= button_to "Edit Team", edit_team_path(@team), method: :get, class:"btn btn-default btn-large model-btn" %>
+            </div>
+              <div class="model-actions-index">
+                <%= button_to "View All Teams", teams_path, method: :get, class:"btn btn-default btn-large model-btn" %>
+              </div>
+          </div>
+        <% end %>
     </div>
   </div>
 </div>

@@ -1,0 +1,53 @@
+<% @subtasks.each do |subtask| %>
+  <div class="row model-div-content">
+    <div class="col-md-4 model-div-img">
+      <% if subtask.staff.picture.blank? %>
+        <%= image_tag("profile-default.png", size: "300x300") %>
+      <% else %>
+        <%= image_tag(subtask.staff.picture.url, size: "300x300") %>
+      <% end %>
+    </div>
+    <div class="col-md-8 model-div-text">
+      <h3><%= subtask.name %></h3>
+      <ul>
+        <li>
+          Category: <%= subtask.category %>
+        </li>
+        <li>
+          Subtask of: <%= link_to subtask.task.name, task_path(subtask.task) %>
+        </li>
+        <li>
+          Staff: <%= link_to subtask.staff.name, staff_path(subtask.staff) %>
+        </li>
+        <li>
+        	Team: <%= link_to subtask.task.team.name, team_path(subtask.task.team) %>
+        </li>
+        <li>
+          Deadline: <%= subtask.deadline %>
+        </li>
+        <% if subtask.comments && !subtask.comments.blank? %>
+          <li>
+            Comments: <%= subtask.comments %>
+          </li>
+        <% else %>
+          <li>
+            This subtask currently does not have any comments
+          </li>
+        <% end %>
+      </ul>
+      <div class="model-actions">
+        <div class="model-actions-delete">
+          <%= button_to "Delete Staff Task", subtask_path(subtask), method: :delete, data: {confirm: "Are you sure?"}, class:"btn btn-default btn-large model-btn" %>
+        </div>
+        <% if @subtasks != Subtask.all %>
+          <div class="model-actions-edit">
+            <%= button_to "Edit Staff Task", edit_subtask_path(subtask), method: :get, class:"btn btn-default btn-large model-btn" %>
+          </div>
+        <% end %>
+        <div class="model-actions-index">
+          <%= button_to "View Staff Task", subtask_path(subtask), method: :get, class:"btn btn-default btn-large model-btn" %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

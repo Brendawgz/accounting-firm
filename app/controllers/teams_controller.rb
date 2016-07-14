@@ -13,13 +13,11 @@ class TeamsController < ApplicationController
         
     def new
         @team = Team.new
-        @tasks = Task.all.find_all { |task| task.team.nil? }
     end
     
     def create
-        @team.attributes = {'staff_ids' => []}.merge(params[:team] || {})
-        @team.attributes = {'task_ids' => []}.merge(params[:team] || {})
         @team = Team.new(team_params)
+        @team.attributes = {'staff_ids' => []}.merge(params[:team] || {})
         if @team.save
             redirect_to teams_path
         else
@@ -28,12 +26,10 @@ class TeamsController < ApplicationController
     end
     
     def edit
-        @tasks = Task.all.find_all { |task| task.team.nil? || task.team == @team }
     end
     
     def update
         @team.attributes = {'staff_ids' => []}.merge(params[:team] || {})
-        @team.attributes = {'task_ids' => []}.merge(params[:team] || {})
         if @team.update(team_params)
             @team.update(team_params)
             redirect_to teams_path
@@ -53,7 +49,7 @@ class TeamsController < ApplicationController
     
     private
     def team_params
-      params.require(:team).permit(:name, :picture, :comments, staff_ids: [], task_ids: [])
+      params.require(:team).permit(:name, :picture, :comments, staff_ids: [])
     end
     
     def set_team

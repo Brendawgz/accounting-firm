@@ -3,7 +3,7 @@
     <h1>Task Listing</h1>
     <%= form_tag task_search_path, method: :get do %>
     <div class="form-group">
-      <div class="search-box search-box-staff">
+      <div class="search-box search-box-team">
         <%= text_field_tag :search_param, params[:search_param], 
                           placeholder: "Enter in the name of the task", autofocus: true, 
                           class: "form-control input-md" %>

@@ -13,9 +13,14 @@ Rails.application.routes.draw do
   get 'about' => 'pages#about'
   get 'contact' => 'pages#contact'
   get 'apply' => 'pages#apply'
-  get 'updates' => 'pages#updates'
   get 'graduates' => 'pages#graduates'
-  get 'promote' => 'pages#promote'
+  get 'openings' => 'pages#openings'
+  get 'why_you_should_choose_us' => 'pages#why_you_should_choose_us'
+  get 'audit_and_assurance' => 'pages#audit_and_assurance'
+  get 'bookkeeping' => 'pages#bookkeeping'
+  get 'consulting' => 'pages#consulting'
+  get 'taxation' => 'pages#taxation'
+  get 'updates' => 'pages#updates'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
@@ -27,6 +32,8 @@ Rails.application.routes.draw do
   get 'task_search' => 'tasks#search'
   resources :subtasks
   get 'subtask_search' => 'subtasks#search'
+  get 'team_tasks' => 'subtasks#team_tasks'
+  get 'my_tasks' => 'subtasks#my_tasks'
   resources :staffs
   get 'staff_search' => 'staffs#search'
   resources :clients

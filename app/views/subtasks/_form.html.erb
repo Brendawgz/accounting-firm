@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-xs-12">
-    <%= form_for(@task, :html => {class: "form-horizontal", role: "form"}) do |f| %>
+    <%= form_for(@subtask, :html => {class: "form-horizontal", role: "form"}) do |f| %>
     
       <div class="form-group">
         <div class="control-label col-sm-2">
@@ -34,40 +34,22 @@
       
       <div class="form-group">
         <div class="control-label col-sm-2">
-          <%= f.label :charge %>
+          <%= f.label :team_task %>
         </div>
         <div class="col-sm-8">
-          RM<%= f.number_field :charge, class: "amount-field", step: "any" %>
+          <%= f.collection_select :task_id, @team.tasks, :id, :name, {}, { :class => 'select-box' } %>
         </div>
       </div>
       
       <div class="form-group">
         <div class="control-label col-sm-2">
-          <%= f.label :paid %>
+          <%= f.label :staff %>
         </div>
         <div class="col-sm-8">
-          <%= f.check_box (:paid), { :class => "checkbox" } %>
+          <%= f.collection_select :staff_id, @team.staffs, :id, :name, {}, { :class => 'select-box' } %>
         </div>
       </div>
-      
-      <div class="form-group">
-        <div class="control-label col-sm-2">
-          <%= f.label :clients %>
-        </div>
-        <div class="col-sm-8">
-          <%= f.collection_select :client_id, Client.all, :id, :name, {}, { :class => 'select-box' } %>
-        </div>
-      </div>
-      
-      <div class="form-group">
-        <div class="control-label col-sm-2">
-          <%= f.label :teams %>
-        </div>
-        <div class="col-sm-8">
-          <%= f.collection_select :team_id, Team.all, :id, :name, {}, { :class => 'select-box' } %>
-        </div>
-      </div>
-      
+
       <div class="form-group">
         <div class="control-label col-sm-2">
           <%= f.label :comments %>
@@ -79,7 +61,7 @@
 
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
-          <%= f.submit(@task.new_record? ?  "Add Task" : "Save Changes", class: "btn btn-default btn-large") %>
+          <%= f.submit(@subtask.new_record? ?  "Add Subtask" : "Save Changes", class: "btn btn-default btn-large") %>
         </div>
       </div>
     <% end %>

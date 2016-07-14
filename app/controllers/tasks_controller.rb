@@ -2,12 +2,19 @@ class TasksController < ApplicationController
     before_action :set_task, only: [:edit, :update, :show, :destroy]
     before_action :require_admin
     
+    def search
+        @tasks = Task.search(params[:search_param])
+        render 'tasks/search'
+    end
+    
     def index
         @tasks = Task.all
     end
         
     def new
         @task = Task.new
+        @clients = Client.all
+        @teams = Team.all
     end
     
     def create
@@ -20,7 +27,8 @@ class TasksController < ApplicationController
     end
     
     def edit
-        
+        @clients = Client.all
+        @teams = Team.all
     end
     
     def update
@@ -43,7 +51,7 @@ class TasksController < ApplicationController
     
     private
     def task_params
-      params.require(:task).permit(:name, :charge, :payment, :category, :deadline, :completion, :comments, :team_id, :client_id)
+      params.require(:task).permit(:name, :charge, :paid, :category, :deadline, :comments, :team_id, :client_id)
     end
     
     def set_task

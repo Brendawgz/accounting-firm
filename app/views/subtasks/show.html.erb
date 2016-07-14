@@ -1,3 +1,82 @@
-<div class="content-div">
-    <h1>Show Subtask</h1>
+<div class="model-div">
+  <div class="model-div-title">
+    <h1><%= @subtask.name %></h1>
+  </div>
+  <div class="row model-div-content">
+      <div class="col-md-4 model-div-img">
+        <% if @subtask.staff.picture.blank? %>
+          <%= image_tag("profile-default.png", size: "300x300") %>
+        <% else %>
+          <%= image_tag(@subtask.staff.picture.url, size: "300x300") %>
+        <% end %>
+      </div>
+      <div class="col-md-8 model-div-text">
+        <h3><%= @subtask.name %></h3>
+      <ul>
+        <li>
+          Category: <%= @subtask.category %>
+        </li>
+        <li>
+          Subtask of: <%= link_to @subtask.task.name, task_path(@subtask.task) %>
+        </li>
+        <li>
+          Staff: <%= link_to @subtask.staff.name, staff_path(@subtask.staff) %>
+        </li>
+        <li>
+        	Team: <%= link_to @subtask.task.team.name, team_path(@subtask.task.team) %>
+        </li>
+        <ul>
+        	<% @subtask.task.team.staffs.each do |staff| %>
+        		<li>
+        			<%= staff.name %>
+        		</li>
+        		<ul>
+      				<% if staff.subtasks.empty? %>
+                <li>
+                  This staff currently does not have any tasks
+                </li>
+              <% else %>
+                <% staff.subtasks.each do |subtask| %>
+                  <li>
+                    <%= link_to subtask.name, subtask_path(subtask) %> (<%= link_to subtask.task.name, task_path(subtask.task) %>)
+                  </li>
+                <% end %>
+              <% end %>
+        		</ul>
+        	<% end %>
+        </ul>
+        <li>
+          Deadline: <%= @subtask.deadline %>
+        </li>
+        <% if @subtask.comments && !@subtask.comments.blank? %>
+          <li>
+            Comments: <%= @subtask.comments %>
+          </li>
+        <% else %>
+          <li>
+            This subtask currently does not have any comments
+          </li>
+        <% end %>
+      </ul>
+      <% if (current_staff.team_leader && current_staff.team == @subtask.staff.team) || current_staff.admin %>
+      <div class="model-actions">
+        <div class="model-actions-delete">
+          <%= button_to "Delete Staff Task", subtask_path(@subtask), method: :delete, data: {confirm: "Are you sure?"}, class:"btn btn-default btn-large model-btn" %>
+        </div>
+          <div class="model-actions-edit">
+            <%= button_to "Edit Staff Task", edit_subtask_path(@subtask), method: :get, class:"btn btn-default btn-large model-btn" %>
+          </div>
+          <div class="model-actions-index">
+            <%= button_to "View All Team Member Tasks", team_tasks_path, method: :get, class:"btn btn-default btn-large model-btn" %>
+          </div>
+        <% end %>
+        <% if current_staff.admin %>
+          <div class="model-actions-index">
+            <%= button_to "View All Staff Task", subtasks_path, method: :get, class:"btn btn-default btn-large model-btn" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
+
