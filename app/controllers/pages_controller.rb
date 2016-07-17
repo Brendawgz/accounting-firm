@@ -14,9 +14,6 @@ class PagesController < ApplicationController
   def graduates
   end
   
-  def openings
-  end
-  
   def why_you_should_choose_us
   end
   

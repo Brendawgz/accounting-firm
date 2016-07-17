@@ -14,10 +14,10 @@
           Category: <%= task.category %>
         </li>
         <li>
-          Client: <%= link_to task.client.name, client_path(task.client) %>
+          Client: <%= link_to_if(staff_signed_in?, task.client.name, client_path(task.client)) %>
         </li>
         <li>
-          Team: <%= link_to task.team.name, team_path(task.team) %>
+          Team: <%= link_to_if(staff_signed_in?, task.team.name, team_path(task.team)) %>
         </li>
         <li>
           Charge: RM<%= task.charge %>
@@ -44,19 +44,21 @@
           </li>
         <% end %>
       </ul>
-      <% if current_staff.admin %>
-        <div class="model-actions">
+      <div class="model-actions">
+      <% if staff_signed_in? && current_staff.admin %>
           <div class="model-actions-delete">
             <%= button_to "Delete Task", task_path(task), method: :delete, data: {confirm: "Are you sure?"}, class:"btn btn-default btn-large model-btn" %>
           </div>
           <div class="model-actions-edit">
             <%= button_to "Edit Task", edit_task_path(task), method: :get, class:"btn btn-default btn-large model-btn" %>
           </div>
+      <% end %>
+      <% if (staff_signed_in? && current_staff.admin) || client_signed_in? %>
           <div class="model-actions-index">
             <%= button_to "View Task", task_path(task), method: :get, class:"btn btn-default btn-large model-btn" %>
           </div>
-        </div>
       <% end %>
+      </div>
     </div>
   </div>
 <% end %>

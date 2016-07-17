@@ -14,11 +14,11 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Services <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li id="navbar-link"><%= link_to 'Why You Should Choose Us', promote_path %></li>
-            <li id="navbar-link"><%= link_to 'Audit and Assurance', root_path %></li>
-            <li id="navbar-link"><%= link_to 'Bookkeeping', root_path %></li>
-            <li id="navbar-link"><%= link_to 'Consulting', root_path %></li>
-            <li id="navbar-link"><%= link_to 'Taxation', root_path %></li>
+            <li id="navbar-link"><%= link_to 'Why You Should Choose Us', why_you_should_choose_us_path %></li>
+            <li id="navbar-link"><%= link_to 'Audit and Assurance', audit_and_assurance_path %></li>
+            <li id="navbar-link"><%= link_to 'Bookkeeping', bookkeeping_path %></li>
+            <li id="navbar-link"><%= link_to 'Consulting', consulting_path %></li>
+            <li id="navbar-link"><%= link_to 'Taxation', taxation_path %></li>
             <li id="navbar-link"><%= link_to '24/7 Live Updates', updates_path %></li>
           </ul>
         </li>
@@ -27,7 +27,6 @@
           <ul class="dropdown-menu">
             <li id="navbar-link"><%= link_to 'How to Apply', apply_path %></li>
             <li id="navbar-link"><%= link_to 'Graduates', graduates_path %></li>
-            <li id="navbar-link"><%= link_to 'Openings', root_path %></li>
           </ul>
         </li>
         <li class="dropdown">
@@ -67,7 +66,7 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Client <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li class="dropdown-header">Client Actions</li>
-               <li id="navbar-link"><%= link_to 'Progress Report', task_path(current_client.id) %></li>
+               <li id="navbar-link"><%= link_to 'Progress Update', tasks_path %></li>
                <li id="navbar-link"><%= link_to 'Log Out', destroy_client_session_path, method: :delete %></li>
              </ul>
           <% end %>

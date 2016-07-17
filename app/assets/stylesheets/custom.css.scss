@@ -204,9 +204,62 @@ a {
     background-position: 50% 65%;
 }
 
+.about_small {
+    background-image: asset-data-url("lintas_small.png");
+}
+
 .contact {
     background-image: asset-data-url("lintas.png");
+    background-position: 50% 15%;
+}
+
+.apply {
+    background-image: asset-data-url("asian_office_workers.png");
+    background-position: 50% 20%;
+}
+
+.graduates {
+    background-image: asset-data-url("asian_graduates.png");
+    background-position: 50% 40%;
+}
+
+.why_you_should_choose_us {
+    background-image: asset-data-url("board_of_directors_meeting.png");
     background-position: 50% 65%;
+}
+
+.why_you_should_choose_us_small {
+    background-image: asset-data-url("board_of_directors_meeting_small.png");
+}
+
+.audit_and_assurance {
+    background-image: asset-data-url("audit_and_assurance.jpg");
+    background-position: 0% 17%;
+}
+
+.bookkeeping {
+    background-image: asset-data-url("bookkeeping.jpeg");
+    background-position: 50% 20%;
+}
+
+.consulting {
+    background-image: asset-data-url("consulting.jpg");
+    background-size: cover;
+}
+
+.taxation {
+    background-image: asset-data-url("gst.png");
+    background-position: 50% 68%;
+}
+
+.updates {
+    background-image: asset-data-url("updates.png");
+    background-position: 50% 53%;
+}
+
+.updates_small {
+    background-image: asset-data-url("updates_small.png");
+    background-position: 80% 100%;
 }
 
 // Forms (Log In, Sign In, Sign Out, Confirmation, Password Reset) CSS

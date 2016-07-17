@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
     before_action :set_task, only: [:edit, :update, :show, :destroy]
-    before_action :require_admin
+    before_action :require_admin, except: [ :show, :index]
     
     def search
         @tasks = Task.search(params[:search_param])
@@ -8,7 +8,11 @@ class TasksController < ApplicationController
     end
     
     def index
-        @tasks = Task.all
+        if client_signed_in?
+            @tasks = current_client.tasks
+        else
+            @tasks = Task.all
+        end
     end
         
     def new

@@ -14,7 +14,6 @@ Rails.application.routes.draw do
   get 'contact' => 'pages#contact'
   get 'apply' => 'pages#apply'
   get 'graduates' => 'pages#graduates'
-  get 'openings' => 'pages#openings'
   get 'why_you_should_choose_us' => 'pages#why_you_should_choose_us'
   get 'audit_and_assurance' => 'pages#audit_and_assurance'
   get 'bookkeeping' => 'pages#bookkeeping'
