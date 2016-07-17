@@ -29,7 +29,7 @@
 		          </li>
 		          <ul>
 		            <li>
-		              Team: <%= task.team.name %>
+		              Team: <%= link_to task.team.name, team_path(task.team) %>
 		            </li>
 		            <li>
 		              Category: <%= task.category %>

@@ -18,7 +18,7 @@
             <ul>
               <% @team.staffs.each do |staff| %>
                 <li>
-                	<%= link_to staff.name, staff_path(staff) %> (<%= pluralize(staff.subtasks.count, 'task') %>)
+                	<%= link_to_if(current_staff.admin?, staff.name, staff_path(staff)) %> (<%= pluralize(staff.subtasks.count, 'task') %>)
                 </li>
                 <ul>
                   <% if staff.subtasks.empty? %>
@@ -28,7 +28,7 @@
                   <% else %>
                     <% staff.subtasks.each do |subtask| %>
                       <li>
-                        <%= link_to subtask.name, subtask_path(subtask) %> (<%= link_to subtask.task.name, task_path(subtask.task) %>)
+                        <%= link_to_if(current_staff.admin?, subtask.name, subtask_path(subtask)) %> (<%= link_to_if(current_staff.admin?, subtask.task.name, task_path(subtask.task)) %>)
                       </li>
                     <% end %>
                   <% end %>
@@ -45,7 +45,7 @@
             <ul>
               <% @team.tasks.each do |task| %>
                 <li>
-                	<%= link_to task.name, task_path(task) %>
+                	<%= link_to_if(current_staff.admin?, task.name, task_path(task)) %>
                 </li>
                 <ul>
                   <li>

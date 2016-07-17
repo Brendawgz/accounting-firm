@@ -14,13 +14,13 @@
           Category: <%= subtask.category %>
         </li>
         <li>
-          Subtask of: <%= link_to subtask.task.name, task_path(subtask.task) %>
+          Subtask of: <%= link_to_if(current_staff.admin?, subtask.task.name, task_path(subtask.task)) %>
         </li>
         <li>
-          Staff: <%= link_to subtask.staff.name, staff_path(subtask.staff) %>
+          Staff: <%= link_to_if(current_staff.admin?, subtask.staff.name, staff_path(subtask.staff)) %>
         </li>
         <li>
-        	Team: <%= link_to subtask.task.team.name, team_path(subtask.task.team) %>
+        	Team: <%= link_to_if(current_staff.admin?, subtask.task.team.name, team_path(subtask.task.team)) %>
         </li>
         <li>
           Deadline: <%= subtask.deadline %>
